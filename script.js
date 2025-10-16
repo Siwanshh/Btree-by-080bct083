@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
       playSound("split");
     }
 
-    // ---------- FIXED DELETE START ----------
+    
     delete(key) {
       this._delete(this.root, key);
       if (this.root.keys.length === 0 && !this.root.leaf) {
@@ -125,10 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
       let idx = node.keys.findIndex(k => k >= key);
       if (idx === -1) idx = node.keys.length;
 
-      // Case 1: Key is in this node
       if (idx < node.keys.length && node.keys[idx] === key) {
         if (node.leaf) {
-          // Leaf: remove directly
+          
           node.keys.splice(idx, 1);
         } else {
           let pred = node.children[idx];
@@ -143,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
             node.keys[idx] = k;
             this._delete(succ, k);
           } else {
-            // Merge key + pred + succ
+        
             pred.keys.push(node.keys[idx], ...succ.keys);
             pred.children.push(...succ.children);
             node.keys.splice(idx, 1);
@@ -152,35 +151,35 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       } else {
-        // Case 2: Key not in this node
-        if (node.leaf) return; // Key not found
+       
+        if (node.leaf) return; 
 
         let child = node.children[idx];
 
-        // Ensure child has enough keys before descending
+       
         if (child.keys.length === minK) {
           let left = idx > 0 ? node.children[idx - 1] : null;
           let right = idx < node.children.length - 1 ? node.children[idx + 1] : null;
 
           if (left && left.keys.length > minK) {
-            // Borrow from left
+            
             child.keys.unshift(node.keys[idx - 1]);
             node.keys[idx - 1] = left.keys.pop();
             if (!left.leaf) child.children.unshift(left.children.pop());
           } else if (right && right.keys.length > minK) {
-            // Borrow from right
+           
             child.keys.push(node.keys[idx]);
             node.keys[idx] = right.keys.shift();
             if (!right.leaf) child.children.push(right.children.shift());
           } else if (left) {
-            // Merge with left
+          
             left.keys.push(node.keys[idx - 1], ...child.keys);
             left.children.push(...child.children);
             node.keys.splice(idx - 1, 1);
             node.children.splice(idx, 1);
             child = left;
           } else if (right) {
-            // Merge with right
+          
             child.keys.push(node.keys[idx], ...right.keys);
             child.children.push(...right.children);
             node.keys.splice(idx, 1);
@@ -201,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
       while (!node.leaf) node = node.children[0];
       return node.keys[0];
     }
-    // ---------- FIXED DELETE END ----------
+    
 
     traverse() {
       const arr = [];
