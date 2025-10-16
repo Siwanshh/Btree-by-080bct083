@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>B-Tree Visualizer — Siwansh Pathak 080BCT083</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loading" class="loading-screen">
+    <div class="loader"><span></span><span></span><span></span><span></span></div>
+    <div class="loading-text">Loading B-Tree Visualizer...</div>
+  </div>
+
+  <div class="page-wrap" style="display:none;">
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo-dot"></div>
+        <div>
+          <div class="app-title">B-Tree Visualizer</div>
+          <div class="app-sub">Interactive Algorithm Visualizer</div>
+        </div>
+      </div>
+      <nav class="top-controls">
+        <div class="identity">Siwansh Pathak — 080BCT083</div>
+        <button id="darkToggle" class="btn small ghost">🌙</button>
+        <button id="infoBtn" class="btn small ghost">i</button>
+      </nav>
+    </header>
+
+    <main class="main-grid">
+      <aside class="panel controls-panel">
+        <div class="panel-title">Control Panel</div>
+        <label class="field"><div class="label">Order</div>
+          <input id="degree" type="number" min="2" max="8" value="3" />
+        </label>
+        <label class="field"><div class="label">Key</div>
+          <input id="keyInput" type="number" placeholder="Enter integer" />
+        </label>
+        <div class="btn-row">
+          <button id="insertBtn" class="btn primary">Insert</button>
+          <button id="deleteBtn" class="btn danger">Delete</button>
+          <button id="clearBtn" class="btn">Clear</button>
+        </div>
+
+    
+        
+
+        <div class="panel-title tiny">Stats</div>
+        <div class="stats"><div>Nodes: <span id="nodeCount">0</span></div><div>Height: <span id="heightCount">0</span></div></div>
+      </aside>
+
+      <section class="visual-panel">
+        <div class="canvas-wrap">
+          <canvas id="treeCanvas"></canvas>
+          <div id="infoPanel" class="info-panel hidden">
+            <h3>Controls</h3>
+            <ul>
+              <li>Set min degree (t) — affects branching (2 ≤ t ≤ 8).</li>
+              <li>Insert — inserts key into B-Tree (with proper splitting).</li>
+              <li>Delete — removes key from tree.</li>
+             
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="marquee-wrap"><marquee behavior="scroll" direction="left" scrollamount="6">Created by Siwansh Pathak 080BCT083</marquee></div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
